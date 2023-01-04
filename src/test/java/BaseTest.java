@@ -8,13 +8,13 @@ public abstract class BaseTest {
     WebDriver driver;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
     @AfterEach
-    public void close(){
+    public void close() {
         if (driver != null)
             driver.quit();
     }

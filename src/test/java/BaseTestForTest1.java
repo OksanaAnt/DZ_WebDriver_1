@@ -9,7 +9,7 @@ public abstract class BaseTestForTest1 {
     WebDriver driver;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
@@ -17,7 +17,7 @@ public abstract class BaseTestForTest1 {
     }
 
     @AfterEach
-    public void close(){
+    public void close() {
         if (driver != null)
             driver.quit();
     }
