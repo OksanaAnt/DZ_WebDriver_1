@@ -1,10 +1,20 @@
-import dev.failsafe.internal.util.Assert;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Test2 extends BaseTest {
+public class TestPicture {
+    WebDriver driver;
+    @BeforeEach
+    public void setUp(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+    }
 
     @Test
     public void getPicture() {
@@ -18,6 +28,11 @@ public class Test2 extends BaseTest {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
         System.out.println("Элемент отображается на странице:" + element.isDisplayed());
+    }
+    @AfterEach
+    public void close() {
+        if (driver != null)
+            driver.quit();
     }
 }
 
