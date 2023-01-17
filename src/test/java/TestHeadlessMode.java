@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,9 +11,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestHeadlessMode {
     WebDriver driver;
+    @BeforeAll
+    public static void init() {
+        WebDriverManager.chromedriver().setup();
+    }
     @BeforeEach
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         driver = new ChromeDriver(options);
@@ -24,9 +28,8 @@ public class TestHeadlessMode {
         clearAndEnter(By.id("search_form_input_homepage"), "ОТУС");
         driver.findElement(By.id("search_button_homepage")).submit();
 
-
 //     Проверить что в поисковой выдаче первый результат Онлайн‑курсы для профессионалов
-        WebElement element = driver.findElement(By.xpath("//div[@id='links']//a[@href='https://otus.ru/']/span[contains(text(),'для профессионалов')][1]"));
+        WebElement element = driver.findElement(By.xpath("//div[@id='links']//a[@href='https://otus.ru/']/span[contains(text(),'курсы для профессионалов')][position()=1]"));
         System.out.println("Элемент отображается на странице:" + element.isDisplayed());
     }
 

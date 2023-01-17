@@ -1,22 +1,29 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class TestСookie {
     WebDriver driver;
+
+    @BeforeAll
+    public static void init() {
+        WebDriverManager.chromedriver().setup();
+    }
     @BeforeEach
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
-
     private String login = "degap85327@paxven.com";
     private String pas = "Jrcfyf!1";
 
@@ -35,7 +42,10 @@ public class TestСookie {
     private void loginInOtus() {
 
         driver.findElement(By.cssSelector(".header3__button-sign-in")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Электронная почта']")));
+
         clearAndEnter(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Электронная почта']"), login);
         clearAndEnter(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Введите пароль']"), pas);
         driver.findElement(By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)")).submit();
