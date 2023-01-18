@@ -11,12 +11,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestPicture {
     WebDriver driver;
+
     @BeforeAll
     public static void init() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
     }
 
@@ -33,6 +35,7 @@ public class TestPicture {
         executor.executeScript("arguments[0].click();", element);
         System.out.println("Элемент отображается на странице:" + element.isDisplayed());
     }
+
     @AfterEach
     public void close() {
         if (driver != null)
