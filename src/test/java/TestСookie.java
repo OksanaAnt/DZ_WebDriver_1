@@ -20,10 +20,12 @@ public class TestСookie {
     public static void init() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
     }
+
     private String login = "degap85327@paxven.com";
     private String pas = "Jrcfyf!1";
 
@@ -46,8 +48,8 @@ public class TestСookie {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Электронная почта']")));
 
-        clearAndEnter(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Электронная почта']"), login);
-        clearAndEnter(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Введите пароль']"), pas);
+        clearAndEnter(By.cssSelector("div[class='new-log-reg__body'] input[name='email']"), login);
+        clearAndEnter(By.cssSelector("div[class='new-log-reg__body'] input[name='password'"), pas);
         driver.findElement(By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)")).submit();
     }
 
@@ -55,6 +57,7 @@ public class TestСookie {
         driver.findElement(by).clear();
         driver.findElement(by).sendKeys(text);
     }
+
     @AfterEach
     public void close() {
         if (driver != null)
