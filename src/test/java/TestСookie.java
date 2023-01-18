@@ -49,7 +49,7 @@ public class TestСookie {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='modal-container new-log-reg-container']//input[@placeholder='Электронная почта']")));
 
         clearAndEnter(By.cssSelector("div[class='new-log-reg__body'] input[name='email']"), login);
-        clearAndEnter(By.cssSelector("div[class='new-log-reg__body'] input[name='password'"), pas);
+        clearAndEnter(By.cssSelector("div[class='new-log-reg__body'] input[name='password']"), pas);
         driver.findElement(By.cssSelector("div.new-input-line_last:nth-child(5) > button:nth-child(1)")).submit();
     }
 
